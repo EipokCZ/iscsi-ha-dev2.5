@@ -1,0 +1,86 @@
+.TH ISCSI-CFG-SETUP 8 "December 2024" "HA-Lizard" "System Administration"
+.SH NAME
+iscsi-cfg-setup \- iSCSI Configuration Setup for HA-Lizard
+
+.SH SYNOPSIS
+.B iscsi-cfg-setup
+[\fB--destroy-existing-data\fR] [\fB--dry-run\fR] [\fB--ignore-host-check\fR]
+[\fB--no-slave\fR] [\fB--rollback\fR] [\fB--sync\fR]
+
+.SH DESCRIPTION
+The iscsi-cfg-setup script configures and sets up an iSCSI target in an HA-Lizard environment. It is used to perform various configuration tasks including:
+
+- Setting up replication between two hosts.
+- Configuring block devices for iSCSI.
+- Setting up DRBD (Distributed Replicated Block Device).
+- Updating firewall and LVM filters.
+- Managing cluster services and synchronization.
+
+The script performs various checks and prompts the user to provide necessary inputs like IP addresses, hostnames, block devices, and replication link speeds.
+
+.SH OPTIONS
+The following options are available:
+
+.TP
+.B --destroy-existing-data
+Deletes any existing data in the configuration setup. This is used for clean setups.
+
+.TP
+.B --dry-run
+Performs a dry run of the script without making any actual changes. Useful for testing the script.
+
+.TP
+.B --ignore-host-check
+Ignores host validation checks during the configuration. If set, host checks such as role in the pool are skipped.
+
+.TP
+.B --no-slave
+Sets the configuration to operate in a master-only mode. If this flag is provided, no slave host is involved in the setup.
+
+.TP
+.B --rollback
+Performs a rollback operation, restoring previous settings and removing changes applied by the script.
+
+.TP
+.B --sync
+Synchronizes configuration files between the master and slave servers. This is used when both servers need to be aligned with the same settings.
+
+.SH EXIT STATUS
+The script exits with the following statuses:
+
+.TP
+.B 0
+Success. All tasks were completed successfully.
+
+.TP
+.B 1
+Error. The script encountered an error during execution.
+
+.SH EXAMPLES
+To run the script with all necessary configuration checks:
+
+.nf
+$ iscsi-cfg-setup
+.fi
+
+To run the script in dry-run mode (no changes made):
+
+.nf
+$ iscsi-cfg-setup --dry-run
+.fi
+
+To roll back the setup:
+
+.nf
+$ iscsi-cfg-setup --rollback
+.fi
+
+.SH SEE ALSO
+.BR ha-lizard (8),
+.BR iscsi (8),
+.BR drbd (8)
+
+.SH AUTHOR
+Salvatore Costantino <ha@pulsesupply.com>
+
+This script is part of the HA-Lizard Open Source High Availability Framework for Xen Cloud Platform and XenServer.

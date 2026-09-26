@@ -68,6 +68,7 @@ install -D -m 755 etc/init.d/iscsi-ha-watchdog %{buildroot}%{_sysconfdir}/init.d
 install -D -m 755 etc/systemd/system/tgtd.service.d/iscsi-ha.local %{buildroot}%{_sysconfdir}/systemd/system/tgtd.service.d/iscsi-ha.local
 install -D -m 755 usr/lib64/iscsi-ha/iscsi-ha.func %{buildroot}%{_libdir}/iscsi-ha/iscsi-ha.func
 install -D -m 755 usr/bin/iscsi-cfg %{buildroot}%{_bindir}/iscsi-cfg
+install -D -m 755 usr/bin/iscsi-cfg-setup %{buildroot}%{_bindir}/iscsi-cfg-setup
 install -D -m 755 usr/libexec/iscsi-ha/become_primary %{buildroot}%{_libexecdir}/iscsi-ha/become_primary
 install -D -m 755 usr/libexec/iscsi-ha/config_manager %{buildroot}%{_libexecdir}/iscsi-ha/config_manager
 install -D -m 755 usr/libexec/iscsi-ha/drbd-sb-tool %{buildroot}%{_libexecdir}/iscsi-ha/drbd-sb-tool
@@ -183,6 +184,7 @@ fi
 
 # Include the python and bash script in /usr/bin/
 %{_bindir}/iscsi-cfg
+%{_bindir}/iscsi-cfg-setup
 
 # Application-specific executable files
 %{_libexecdir}/iscsi-ha/become_primary
