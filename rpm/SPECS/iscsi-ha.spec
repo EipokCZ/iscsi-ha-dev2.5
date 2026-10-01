@@ -110,17 +110,13 @@ fi
 set -e
 echo "Setting up iscsi-ha..."
 
-# Disable scsi-target-utils service if it exists
-if systemctl list-units --type=service --quiet --all scsi-target.service; then
-    systemctl disable scsi-target.service
-    systemctl stop scsi-target.service
-fi
+# Disable scsi-target-utils service safely if present
+systemctl disable scsi-target.service &>/dev/null || true
+systemctl stop scsi-target.service &>/dev/null || true
 
-# Disable drbd84-utils service if it exists
-if systemctl list-units --type=service --quiet --all drbd.service; then
-    systemctl disable drbd.service
-    systemctl stop drbd.service
-fi
+# Disable drbd84-utils service safely if present
+systemctl disable drbd.service &>/dev/null || true
+systemctl stop drbd.service &>/dev/null || true
 
 # Enable the services to start on boot
 if command -v systemctl &> /dev/null; then
